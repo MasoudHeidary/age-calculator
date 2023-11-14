@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>My Age Form</title>
+</head>
+
+<body>
+
+
+  <div class="container mt-5">
+    <h1 class="h1 text-center">Show My Age Form</h1>
+    <form name="form-date" method="get" action="./age.html">
+      <div class="row justify-content-center">
+        <div class="col-md-6 mb-3">
+          <label for="date" class="form-label">Birth Date</label>
+          <input type="date" class="form-control" id="date" name="date">
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="mb-3 col-md-6">
+          <label for="time" class="form-label">Time</label>
+          <input type="time" class="form-control" id="time" name="time">
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="mb-3 col-md-6 form-check">
+          <input type="checkbox" class="form-check-input" id="check-midnight" name="check-midnight"
+            onchange="check_midnight()"> <label class="form-check-label" for="check-midnight">set time to midnight</label>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <button type="submit" class="col-12 mb-3 btn btn-primary">Show My Age</button>
+      </div>
+
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script>
+    let form = document.forms["form-date"];
+
+    function init_form() {
+      form["date"].value = "2000-01-01";
+      form["time"].value = "00:00"
+      form["check-midnight"].checked = false;
+    }
+    init_form();
+
+
+    function check_midnight() {
+      if (form["check-midnight"].checked) {
+        form["time"].disabled = true;
+        form["time"].value = "00:00";
+      } else {
+        form["time"].disabled = false;
+      }
+    }
+    check_midnight()
+
+    let x = new Date("2023-01-01T00:00:00");
+
+  </script>
+
+</body>
+
+</html>

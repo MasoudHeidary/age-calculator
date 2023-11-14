@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>My Age</title>
+  <link rel="stylesheet" href="age.css" />
+
+</head>
+
+<body>
+
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <span class="colon"></span>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+
+</body>
+
+
+<script src="age.js"></script>
+<script src="age_style.js"></script>
+
+<script>
+  // get data from query
+  let url_param = new URLSearchParams(window.location.search)
+  let q_date = url_param.get('date');
+  let q_time = url_param.get('time');
+  let s_time = ""
+  
+  if(q_time == null) {
+    s_time = "23:59:59";  
+  } else {
+    s_time = `${q_time}:00`
+  }
+
+  let birth = new Date(`${q_date}T${s_time}`);
+
+  function init_age_s() {
+    for (let i = 0; i < 9; i++) {
+      set_col(i, 0);
+    }
+  }
+  init_age_s()
+
+  function update_age_s() {
+    let age = get_age(birth)
+    let age_list = Array.from(String(age));
+
+    let age_index = 0;
+    let col_index = 0;
+    for (col_index = 0; col_index < 9; col_index++, age_index++) {
+      let value = age_list[age_index];
+      if (value == '.') {
+        col_index = 1;
+        continue;
+      }
+      set_col(col_index, value);
+    }
+  }
+
+  setInterval(update_age_s, 100)
+
+
+</script>
+
+
+</html>
