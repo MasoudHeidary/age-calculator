@@ -6,7 +6,9 @@ access the form by [this link](https://masoudheidary.github.io/age-calculator/ag
 ---
 
 ## form
-!(form)[/static/form.png]
+
+!(form)[https://github.com/MasoudHeidary/age-calculator/tree/main/static/form.png]
 
 ## output
-!(output)[/static/age.png]
+
+!(output)[https://github.com/MasoudHeidary/age-calculator/tree/main/static/age.png]
