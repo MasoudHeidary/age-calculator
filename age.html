@@ -6,10 +6,14 @@
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
   <title>My Age</title>
   <link rel="stylesheet" href="age.css" />
+  <link rel="stylesheet" href="effect.css" />
 
 </head>
 
 <body>
+
+  <h1 style="margin-top: 30px;">Happy Birthday Sheida ❤️</h1>
+  <canvas id="confetti"></canvas>
 
   <div class="column">
     <div class="num">0</div>
@@ -134,11 +138,16 @@
     <div class="num">9</div>
   </div>
 
+  <canvas id="birthday"></canvas>
+
+
 </body>
 
 
 <script src="age.js"></script>
 <script src="age_style.js"></script>
+<script src="effect.js"></script>
+<script src="effect1.js"></script>
 
 <script>
   // get data from query
@@ -146,9 +155,9 @@
   let q_date = url_param.get('date');
   let q_time = url_param.get('time');
   let s_time = ""
-  
-  if(q_time == null) {
-    s_time = "23:59:59";  
+
+  if (q_time == null) {
+    s_time = "23:59:59";
   } else {
     s_time = `${q_time}:00`
   }
