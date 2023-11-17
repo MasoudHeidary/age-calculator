@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>My Age</title>
+  <title id="window-title">Happy Birthday ❤️</title>
   <link rel="stylesheet" href="age.css" />
   <link rel="stylesheet" href="effect.css" />
 
@@ -12,7 +12,7 @@
 
 <body>
 
-  <h1 style="margin-top: 30px;">Happy Birthday Sheida ❤️</h1>
+  <h1 style="margin-top: 30px;" id="title">Happy Birthday ❤️</h1>
   <canvas id="confetti"></canvas>
 
   <div class="column">
@@ -152,9 +152,15 @@
 <script>
   // get data from query
   let url_param = new URLSearchParams(window.location.search)
+  let q_title = url_param.get('title');
   let q_date = url_param.get('date');
   let q_time = url_param.get('time');
   let s_time = ""
+
+  if(q_title != "" && q_title != null) {
+    document.getElementById('title').innerHTML = q_title
+    document.getElementById('window-title').innerHTML = q_title;
+  }
 
   if (q_time == null) {
     s_time = "23:59:59";
@@ -162,7 +168,10 @@
     s_time = `${q_time}:00`
   }
 
+
+
   let birth = new Date(`${q_date}T${s_time}`);
+  let last_age = Math.floor(get_age(birth));
 
   function init_age_s() {
     for (let i = 0; i < 9; i++) {
@@ -170,6 +179,19 @@
     }
   }
   init_age_s()
+
+  function hide_birthday_style() {
+    document.getElementById("confetti").style.visibility = "hidden";
+    document.getElementById("birthday").style.visibility = "hidden";
+  }
+  hide_birthday_style()
+
+  function show_birthday_style() {
+    document.getElementById("confetti").style.visibility = "visible";
+    document.getElementById("birthday").style.visibility = "visible";
+  }
+
+
 
   function update_age_s() {
     let age = get_age(birth)
@@ -184,6 +206,13 @@
         continue;
       }
       set_col(col_index, value);
+    }
+
+    // check if age changed 
+    if (last_age != Math.floor(age)) {
+      last_age = Math.floor(age)
+      console.log("age changed")
+      show_birthday_style()
     }
   }
 
